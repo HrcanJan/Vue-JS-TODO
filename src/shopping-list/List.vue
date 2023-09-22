@@ -5,16 +5,16 @@
 	<hr>
 	<h2>Pridané položky</h2>
 	<ul>
-		<li v-for="item in validItems" :key="`item-${item.id}`">
+		<li v-for="item in this.items" :key="`item-${item.id}`">
 			<span @click="deleteItem(item)" style="margin-right: 15px" class="delete">X</span>
-			{{  item.text }}
+			<span v-if="!item.deleted">{{  item.text }}</span>
 		</li>
 	</ul>
 	<hr>
 	<h2>Zmazané položky</h2>
 	<ul>
-		<li v-for="item in deletedItems" :key="`item-${item.id}`">
-			<s>{{  item.text }}</s>
+		<li v-for="item in this.items" :key="`item-${item.id}`">
+			<s v-if="item.deleted">{{  item.text }}</s>
 		</li>
 	</ul>
 </template>
@@ -33,24 +33,14 @@ export default {
 			this.items.push({
 				id: this.items.length + 1,
 				text: this.input,
-				is_deleted: false
+				deleted: false
 			})
 			this.input = ''
 		},
 
 		deleteItem(item) {
-			item.is_deleted = true
+			item.deleted = true
 		}
 	},
-
-	computed: {
-		validItems() {
-			return this.items.filter(item => !item.is_deleted)
-		},
-
-		deletedItems() {
-			return this.items.filter(item => item.is_deleted)
-		}
-	}
 }
 </script>
