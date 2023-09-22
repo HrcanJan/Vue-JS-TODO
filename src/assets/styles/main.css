@@ -1,0 +1,23 @@
+body {
+	color: white;
+	background-color: #191919;
+}
+
+button {
+	display: block;
+	margin: 2px 0;
+}
+
+.delete {
+	cursor: pointer;
+}
+
+nav {
+  background-color: antiquewhite;
+  color: black;
+}
+
+nav a:link{
+  text-decoration: none;
+  color: black;
+}
