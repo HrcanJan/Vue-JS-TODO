@@ -6,6 +6,10 @@
   <router-view/>
 </template>
 
+<script>
+
+</script>
+
 <style scoped>
 #app {
 	font-family: Avenir, Helvetica, Arial, sans-serif;
