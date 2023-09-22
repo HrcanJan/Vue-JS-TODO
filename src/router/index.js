@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import List from '../shopping-list/List.vue'
-import Detail from '../shopping-list/Detail.vue'
+import Deleted from '../shopping-list/Deleted.vue'
 
 const routes = [
   {
@@ -9,9 +9,9 @@ const routes = [
     component: List
   },
   {
-    path: '/detail',
-    name: 'detail',
-    component: Detail
+    path: '/deleted',
+    name: 'deleted',
+    component: Deleted
   }
 ]
 
