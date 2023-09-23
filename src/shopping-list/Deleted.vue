@@ -1,7 +1,9 @@
 <template>
     <h2>Zmazané položky</h2>
 	<div v-for="item in this.items" :key="`item-${item.id}`">
-		<div v-if="item.deleted">{{  item.text }}</div>
+		<div class="item" v-if="item.deleted">
+			<div>{{  item.text }}</div>
+		</div>
 	</div>
 </template>
 

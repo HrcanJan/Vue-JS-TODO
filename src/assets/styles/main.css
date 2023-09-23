@@ -1,6 +1,6 @@
 body {
-	color: white;
-	background-color: #191919;
+	color: black;
+	background-color: white;
 	margin: 0;
 	background-image: url('../img/bg-img.png');
 }
@@ -8,14 +8,48 @@ body {
 button {
 	display: block;
 	margin: 2px 0;
+	margin: auto auto;
+	background-color: #4CAF50;
+	border-radius: 10%;
+	font-size: large;
+	padding: 5px;
+	display: inline-block;
+}
+
+button[disabled] {
+	cursor: not-allowed;
 }
 
 .delete {
 	cursor: pointer;
 }
 
+input {
+	padding: 5px;
+	border-radius: 5px;
+	font-size: large;
+	margin: auto auto;
+	display: inline-block;
+}
+
 .wrapper {
 	padding: 50px;
+	text-align: center;
+}
+
+.form {
+	margin: auto auto;
+}
+
+.item {
+	margin: 20px auto;
+	width: 15%;
+	display: block;
+	font-size: large;
+	padding: 10px;
+	background-color: #7a2a2aa8;
+	text-align: left;
+	border-radius: 5px;
 }
 
 /* Credits: https://www.javatpoint.com/css-navigation-bar */

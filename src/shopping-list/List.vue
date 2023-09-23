@@ -1,12 +1,16 @@
 <template>
 	<h2>Nová položka</h2>
-	<input @keyup.enter="addItem" v-model="input" placeholder="Názov položky">
-	<button @click="addItem()">Pridať</button>
+	<div class="form">
+		<input @keyup.enter="addItem" @input="isInput" v-model="input" placeholder="Názov položky">
+		<button @click="addItem()" disabled>+</button>
+	</div>
 	<hr>
 	<h2>Pridané položky</h2>
 	<div v-for="item in this.items" :key="`item-${item.id}`">
-		<span v-if="!item.deleted" @click="deleteItem(item)" style="margin-right: 15px" class="delete">X</span>
-		<span v-if="!item.deleted">{{  item.text }}</span>
+		<div class="item" v-if="!item.deleted">
+			<span @click="deleteItem(item)" style="margin-right: 15px" class="delete">X</span>
+			<span>{{  item.text }}</span>
+		</div>
 	</div>
 </template>
 
@@ -21,19 +25,32 @@ export default {
 
 	methods: {
 		addItem() {
-			this.items.push({
-				id: this.items.length + 1,
-				text: this.input,
-				deleted: false
-			})
-			sessionStorage.setItem("items", JSON.stringify(this.items))
-			this.input = ''
+			if(this.input) {
+				this.items.push({
+					id: this.items.length + 1,
+					text: this.input,
+					deleted: false
+				})
+				sessionStorage.setItem("items", JSON.stringify(this.items))
+				this.input = ''
+				this.isInput()
+			}
 		},
 
 		deleteItem(item) {
 			item.deleted = true
 			sessionStorage.setItem("items", JSON.stringify(this.items))
+		},
+
+		isInput() {
+			const button =  document.querySelector('button');
+			if(this.input)
+				button.disabled = false
+			else
+				button.disabled = true
+
 		}
-	}
+	},
+
 }
 </script>
