@@ -48,7 +48,6 @@ export default {
 				button.disabled = false
 			else
 				button.disabled = true
-
 		}
 	},
 
