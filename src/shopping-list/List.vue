@@ -34,6 +34,6 @@ export default {
 			item.deleted = true
 			sessionStorage.setItem("items", JSON.stringify(this.items))
 		}
-	},
+	}
 }
 </script>

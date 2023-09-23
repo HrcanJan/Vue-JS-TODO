@@ -1,10 +1,10 @@
 <template>
     <ul>
         <li class="active" id="list" @click="activeTab('list')">
-            <router-link to="/">List</router-link>
+            <router-link to="/">List ({{ numOfItems }})</router-link>
         </li>
         <li id="deleted" @click="activeTab('deleted')">
-            <router-link to="/deleted">Deleted</router-link>
+            <router-link to="/deleted">Deleted ({{ itemLength - numOfItems }})</router-link>
         </li>
     </ul>
     <div class="wrapper">
@@ -14,6 +14,7 @@
 
 <script>
 export default {
+
     methods: {
         activeTab(id) {
 		    const tabs = document.getElementsByTagName('li')
