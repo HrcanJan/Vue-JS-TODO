@@ -1,6 +1,7 @@
 body {
 	color: white;
 	background-color: #191919;
+	margin: 0;
 }
 
 button {
@@ -12,12 +13,34 @@ button {
 	cursor: pointer;
 }
 
-nav {
-  background-color: antiquewhite;
-  color: black;
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #666;
+	position: fixed;
+	top: 0;
+	width: 100%;
 }
 
-nav a:link{
-  text-decoration: none;
-  color: black;
+li {
+	float: left;
+	border-right: 1px solid #bbb;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li a:hover {
+	background-color: #111;
+}
+
+.active {
+	background-color: #4CAF50;
 }
