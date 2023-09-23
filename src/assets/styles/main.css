@@ -2,6 +2,7 @@ body {
 	color: white;
 	background-color: #191919;
 	margin: 0;
+	background-image: url('../img/bg-img.png');
 }
 
 button {
@@ -13,6 +14,11 @@ button {
 	cursor: pointer;
 }
 
+.wrapper {
+	padding: 50px;
+}
+
+/* Credits: https://www.javatpoint.com/css-navigation-bar */
 ul {
 	list-style-type: none;
 	margin: 0;

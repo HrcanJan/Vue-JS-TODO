@@ -1,13 +1,15 @@
 <template>
-	<ul>
-		<li class="active" id="list" @click="activeTab('list')">
-			<router-link to="/">List</router-link>
+    <ul>
+        <li class="active" id="list" @click="activeTab('list')">
+            <router-link to="/">List</router-link>
         </li>
         <li id="deleted" @click="activeTab('deleted')">
-		    <router-link to="/deleted">Deleted</router-link>
-	    </li>
+            <router-link to="/deleted">Deleted</router-link>
+        </li>
     </ul>
-    <router-view/>
+    <div class="wrapper">
+        <router-view/>
+    </div>
 </template>
 
 <script>
@@ -27,10 +29,9 @@ export default {
 </script>
 
 <style scoped>
-    #app {
-	    font-family: Avenir, Helvetica, Arial, sans-serif;
-	    -webkit-font-smoothing: antialiased;
-	    -moz-osx-font-smoothing: grayscale;
-	    margin-top: 60px;
+#app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 </style>
