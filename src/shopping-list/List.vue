@@ -7,7 +7,7 @@
 	<hr>
 	<h2>Pridané položky</h2>
 	<div v-for="item in this.items" :key="`item-${item.id}`">
-		<Item :item="item" :deleteItem="deleteItem" />
+		<Item :item="item" :deleteItem="deleteItem" :itemDeleted="itemDeleted" />
 	</div>
 </template>
 
@@ -19,6 +19,7 @@ export default {
 		return {
 			items: JSON.parse(sessionStorage.getItem("items")) ? JSON.parse(sessionStorage.getItem("items")) : [],
 			input: '',
+			itemDeleted: false
 		}
 	},
 
