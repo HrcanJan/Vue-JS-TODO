@@ -7,20 +7,23 @@
 	<hr>
 	<h2>Pridané položky</h2>
 	<div v-for="item in this.items" :key="`item-${item.id}`">
-		<div class="item" v-if="!item.deleted">
-			<span @click="deleteItem(item)" style="margin-right: 15px" class="delete">X</span>
-			<span>{{  item.text }}</span>
-		</div>
+		<Item :item="item" :deleteItem="deleteItem" />
 	</div>
 </template>
 
 <script>
+import Item from '../components/Item.vue'
+
 export default {
 	data() {
 		return {
 			items: JSON.parse(sessionStorage.getItem("items")) ? JSON.parse(sessionStorage.getItem("items")) : [],
 			input: '',
 		}
+	},
+
+	components: {
+		Item, 
 	},
 
 	methods: {
