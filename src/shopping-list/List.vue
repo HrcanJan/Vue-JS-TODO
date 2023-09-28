@@ -20,7 +20,7 @@ import Item from '../components/Item.vue'
 export default {
 	data() {
 		return {
-			items: [],
+			items: JSON.parse(sessionStorage.getItem("items")) ? JSON.parse(sessionStorage.getItem("items")) : [],
 			input: '',
 			itemDeleted: false
 		}
