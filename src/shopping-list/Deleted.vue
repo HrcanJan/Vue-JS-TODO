@@ -16,6 +16,12 @@ export default {
 		}
 	},
 
+	props : {
+        item_list: Object,
+        putData: Function,
+        postData: Function
+    },
+
 	components: {
 		Item
 	}
