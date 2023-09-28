@@ -15,7 +15,7 @@
         </li>
     </ul>
     <div class="wrapper">
-        <router-view :item_list="this.items" />
+        <router-view :item_list="this.items" :postData="postData" :putData="putData" />
     </div>
 </template>
 
@@ -52,20 +52,25 @@ export default {
             axios.get('https://28ad3fcf-e1e0-48be-b014-13f6120e1bc0.mock.pstmn.io/items')
             .then(response => {
                 this.items = JSON.parse(JSON.stringify(response.data))
+                console.log(response.data)
             })
         },
 
-        postData() {
+        postData(itemId = 4, itemName = "Date", itemIsDeleted = false) {
             axios({
                 method: 'post',
                 url: 'https://28ad3fcf-e1e0-48be-b014-13f6120e1bc0.mock.pstmn.io/additems',
-                data: {"id": "4", "name": "Date", "isDeleted": "True"}
+                data: {"id": itemId, "name": itemName, "isDeleted": itemIsDeleted}
                 })
             .then(response => console.log(response.data))
         },
 
-        putData() {
-            axios.put('https://28ad3fcf-e1e0-48be-b014-13f6120e1bc0.mock.pstmn.io/deleteitems', {"id": "4", "isDeleted": "True"})
+        putData(itemId, itemIsDeleted) {
+            axios({
+                method: 'put',
+                url: 'https://28ad3fcf-e1e0-48be-b014-13f6120e1bc0.mock.pstmn.io/deleteitems',
+                data: {"id": itemId, "isDeleted": itemIsDeleted}
+                })
             .then((response) => console.log(response.data))
         }
     }

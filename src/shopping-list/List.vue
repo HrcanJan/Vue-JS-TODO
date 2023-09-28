@@ -6,9 +6,6 @@
 	</div>
 	<hr>
 	<h2>Pridané položky</h2>
-	<!-- <div v-for="item in this.item_list" :key="`get_item-${item.id}`">
-		<Item :item="item" :deleteItem="deleteItem" :itemDeleted="itemDeleted" />
-	</div> -->
 	<div v-for="item in this.items" :key="`item-${item.id}`">
 		<Item :item="item" :deleteItem="deleteItem" :itemDeleted="itemDeleted" />
 	</div>
@@ -26,7 +23,11 @@ export default {
 		}
 	},
 
-	props : ['item_list'],
+	props : {
+        item_list: Object,
+        putData: Function,
+        postData: Function
+    },
 
 	components: {
 		Item, 
@@ -59,6 +60,7 @@ export default {
 					text: this.input,
 					deleted: false
 				})
+				this.postData(this.items.length, this.input, false)
 				sessionStorage.setItem("items", JSON.stringify(this.items))
 				this.input = ''
 				this.isInput()
@@ -67,6 +69,7 @@ export default {
 
 		deleteItem(item) {
 			item.deleted = true
+			this.putData(item.id, item.deleted)
 			sessionStorage.setItem("items", JSON.stringify(this.items))
 		},
 
