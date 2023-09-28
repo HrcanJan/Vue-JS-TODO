@@ -1,4 +1,5 @@
 <template>
+    <div class="bg"></div>
     <ul>
         <li class="active" id="list" @click="activeTab('list')">
             <router-link to="/">List</router-link>
@@ -6,9 +7,15 @@
         <li id="deleted" @click="activeTab('deleted')">
             <router-link to="/deleted">Deleted</router-link>
         </li>
+        <li id="deleted" @click="getData()">
+            <a>GET</a>
+        </li>
+        <li id="deleted" @click="postData()">
+            <a>POST</a>
+        </li>
     </ul>
     <div class="wrapper">
-        <router-view/>
+        <router-view :item_list="this.items" />
     </div>
 </template>
 
@@ -16,9 +23,18 @@
 import axios from 'axios'
 
 export default {
-    mounted() {
-        axios.get('https://jsonplaceholder.typicode.com/posts/1')
-        .then(response => console.log(response.data))
+	data() {
+		return {
+			items: []
+		}
+	},
+
+    async mounted() {
+        try{
+            this.getData()
+        } catch (error) {
+            console.error("Error fetching data:", error);
+            }
     },
 
     methods: {
@@ -30,7 +46,28 @@ export default {
 		    tab.classList.remove('active')
 
 	    activeTab.classList.add('active')
-	    }
+	    },
+
+        getData() {
+            axios.get('https://28ad3fcf-e1e0-48be-b014-13f6120e1bc0.mock.pstmn.io/items')
+            .then(response => {
+                this.items = JSON.parse(JSON.stringify(response.data))
+            })
+        },
+
+        postData() {
+            axios({
+                method: 'post',
+                url: 'https://28ad3fcf-e1e0-48be-b014-13f6120e1bc0.mock.pstmn.io/additems',
+                data: {"id": "4", "name": "Date", "isDeleted": "True"}
+                })
+            .then(response => console.log(response.data))
+        },
+
+        putData() {
+            axios.put('https://28ad3fcf-e1e0-48be-b014-13f6120e1bc0.mock.pstmn.io/deleteitems', {"id": "4", "isDeleted": "True"})
+            .then((response) => console.log(response.data))
+        }
     }
 }
 </script>

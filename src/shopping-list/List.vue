@@ -6,6 +6,9 @@
 	</div>
 	<hr>
 	<h2>Pridané položky</h2>
+	<!-- <div v-for="item in this.item_list" :key="`get_item-${item.id}`">
+		<Item :item="item" :deleteItem="deleteItem" :itemDeleted="itemDeleted" />
+	</div> -->
 	<div v-for="item in this.items" :key="`item-${item.id}`">
 		<Item :item="item" :deleteItem="deleteItem" :itemDeleted="itemDeleted" />
 	</div>
@@ -17,14 +20,35 @@ import Item from '../components/Item.vue'
 export default {
 	data() {
 		return {
-			items: JSON.parse(sessionStorage.getItem("items")) ? JSON.parse(sessionStorage.getItem("items")) : [],
+			items: [],
 			input: '',
 			itemDeleted: false
 		}
 	},
 
+	props : ['item_list'],
+
 	components: {
 		Item, 
+	},
+
+	watch: {
+		item_list() {
+			let arr = JSON.parse(sessionStorage.getItem("items")) ? JSON.parse(sessionStorage.getItem("items")) : []
+			let names = arr.map(item => item.text)
+			for(let i = 0; i < this.item_list.length; i++){
+				let new_item = this.item_list[i].name.toString()
+				let new_item_deleted = this.item_list[i].isDeleted
+				if(names.indexOf(new_item) === -1){
+					arr.push({
+					id: arr.length + 1,
+					text: new_item,
+					deleted: new_item_deleted === "True" ? true : false
+					})
+				}
+			}
+			this.items = arr
+		}
 	},
 
 	methods: {
