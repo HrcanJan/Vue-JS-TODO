@@ -2,10 +2,10 @@
     <div class="bg"></div>
     <ul>
         <li class="active" id="list" @click="activeTab('list')">
-            <router-link to="/">List</router-link>
+            <router-link to="/">List({{ this.itemAmount }})</router-link>
         </li>
         <li id="deleted" @click="activeTab('deleted')">
-            <router-link to="/deleted">Deleted</router-link>
+            <router-link to="/deleted">Deleted({{ this.deletedAmount }})</router-link>
         </li>
         <li id="deleted" @click="getData()">
             <a>GET</a>
@@ -15,7 +15,13 @@
         </li>
     </ul>
     <div class="wrapper">
-        <router-view :item_list="this.items" :postData="postData" :putData="putData" />
+        <router-view 
+            :item_list="this.items"
+            :postData="postData"
+            :putData="putData"
+            :itemAmount="updateItemAmount"
+            :deletedAmount="updateDeletedAmount"
+        />
     </div>
 </template>
 
@@ -25,7 +31,9 @@ import axios from 'axios'
 export default {
 	data() {
 		return {
-			items: []
+			items: [],
+            deletedAmount: 0,
+            itemAmount: 0
 		}
 	},
 
@@ -72,6 +80,14 @@ export default {
                 data: {"id": itemId, "isDeleted": itemIsDeleted}
                 })
             .then((response) => console.log(response.data))
+        },
+
+        updateItemAmount(amount = 0){
+            this.itemAmount = amount
+        },
+
+        updateDeletedAmount(amount = 0){
+            this.deletedAmount = amount
         }
     }
 }

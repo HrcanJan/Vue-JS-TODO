@@ -26,7 +26,9 @@ export default {
 	props : {
         item_list: Object,
         putData: Function,
-        postData: Function
+        postData: Function,
+		itemAmount: Function,
+		deletedAmount: Function
     },
 
 	components: {
@@ -49,6 +51,7 @@ export default {
 				}
 			}
 			this.items = arr
+			this.calculateAmount()
 		}
 	},
 
@@ -64,6 +67,7 @@ export default {
 				sessionStorage.setItem("items", JSON.stringify(this.items))
 				this.input = ''
 				this.isInput()
+				this.calculateAmount()
 			}
 		},
 
@@ -71,6 +75,7 @@ export default {
 			item.deleted = true
 			this.putData(item.id, item.deleted)
 			sessionStorage.setItem("items", JSON.stringify(this.items))
+			this.calculateAmount()
 		},
 
 		isInput() {
@@ -79,8 +84,20 @@ export default {
 				button.disabled = false
 			else
 				button.disabled = true
+		},
+
+		calculateAmount() {
+			let activeItems = 0
+			let inactiveItems = 0
+			for(let i = 0; i < this.items.length; i++){
+				if(!this.items[i].deleted)
+					activeItems++
+				else
+					inactiveItems++
+			}
+			this.itemAmount(activeItems)
+			this.deletedAmount(inactiveItems)
 		}
 	},
-
 }
 </script>

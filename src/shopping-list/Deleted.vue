@@ -19,7 +19,9 @@ export default {
 	props : {
         item_list: Object,
         putData: Function,
-        postData: Function
+        postData: Function,
+		itemAmount: Function,
+		deletedAmount: Function
     },
 
 	components: {
