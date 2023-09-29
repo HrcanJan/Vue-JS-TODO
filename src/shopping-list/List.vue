@@ -51,6 +51,7 @@ export default {
 				}
 			}
 			this.items = arr
+			sessionStorage.setItem("items", JSON.stringify(this.items))
 			this.calculateAmount()
 		}
 	},
